@@ -54,7 +54,7 @@ func (c *INI) Lines(trimmed bool) [][]byte{
 		if err != nil && err != io.EOF {
 				log.Fatal("eror reading a line:", err)
 		}
-		if len(line) <= 2{
+		if len(line) == 0{
 			continue
 		} else {
 			lines = append(lines, line)
@@ -103,7 +103,7 @@ func extractBlocks(c *INI){
 	regexpCh := regexp.MustCompile(`\[([\w\$-]+)\]`)
 	var blk Block
 	cnt := 0
-	for _, line := range lines {
+	for i, line := range lines {
 		if regexpCh.Match(line){
 			if cnt != 0 {
 				c.Blocks = append(c.Blocks, blk)
@@ -123,6 +123,8 @@ func extractBlocks(c *INI){
 				blk.AddData(kv)
 			} else if len(kv) == 2 {
 				log.Fatal("A key can not contain the ';' character in its name")
+			} else if len(kv) <2 {
+				log.Panicf("Line %d is invalid, is not a valid key value pair of a comment", i)
 			}
 		}
 	}
