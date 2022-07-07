@@ -33,7 +33,7 @@ type INI struct {
 type Block struct{
 	Name string
 	Content []byte
-	Data []map[string]string
+	Data map[string]string
 }
 
 // Lines Method is used to return a slice of all lines in the config file
@@ -107,7 +107,7 @@ func extractBlocks(c *INI){
 			blk = Block{
 				Name: regexpCh.FindStringSubmatch(string(line))[1],
 				Content: make([]byte, 0),
-				Data: make([]map[string]string, 0),
+				Data: make(map[string]string),
 			}
 			blk.AppendContent(line)
 			cnt++
@@ -136,11 +136,7 @@ func (b *Block) AppendContent(c []byte){
 }
 
 func (b *Block) AddData(kv []string){
-	p := make(map[string]string)
-
-	p[kv[0]] = kv[1]
-
-	b.Data = append(b.Data, p)
+	b.Data[kv[0]] = kv[1]
 }
 
 // Trims out all lines starting with ;
