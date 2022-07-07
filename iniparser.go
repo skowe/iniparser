@@ -54,7 +54,11 @@ func (c *INI) Lines(trimmed bool) [][]byte{
 		if err != nil && err != io.EOF {
 				log.Fatal("eror reading a line:", err)
 		}
-		lines = append(lines, line)
+		if len(line) <= 2{
+			continue
+		} else {
+			lines = append(lines, line)
+		}
 	}
 
 	return lines
