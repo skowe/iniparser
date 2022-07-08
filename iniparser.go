@@ -8,6 +8,8 @@ import (
 	"regexp"
 	"strings"
 )
+
+//Constants for file parsing
 const (
 	LineEnd = '\n'
 	CommentStart = ';'
@@ -95,6 +97,7 @@ func (c *INI) Parse() {
 	trimComments(c)
 	extractBlocks(c)
 }
+
 
 func extractBlocks(c *INI){
 	lines := c.Lines(true)
