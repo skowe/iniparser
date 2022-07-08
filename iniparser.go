@@ -94,8 +94,6 @@ func NewINI(pathToIni string) *INI {
 func (c *INI) Parse() {
 	trimComments(c)
 	extractBlocks(c)
-
-	log.Println(c.Blocks)
 }
 
 func extractBlocks(c *INI){
