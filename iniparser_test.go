@@ -7,7 +7,7 @@ import (
 	"github.com/skowe/iniparser"
 )
 
-var expectedRaw = []byte(`[Block1]
+var expectedRaw = []byte(`[Block1]gi
 ;A comment line
 key1=val1
 key2=val2 ;A comment at the end of line
