@@ -169,3 +169,13 @@ func trimComments(c *INI) {
 	}
 	c.RawTrimmed = res
 }
+
+
+func (i *INI) GetBlockData(name string) map[string]string{
+	val, ok := i.Blocks[name]
+
+	if !ok {
+		return nil
+	}
+	return val.Data
+}
