@@ -112,9 +112,9 @@ func extractBlocks(c *INI) {
 	for _, line := range lines {
 		if regexpCh.Match(line) {
 			if cnt != 0 {
-				name = regexpCh.FindStringSubmatch(string(line))[1]
 				c.Blocks[name] = blk
 			}
+			name = regexpCh.FindStringSubmatch(string(line))[1]
 			blk = Block{
 				Content: make([]byte, 0),
 				Data:    make(map[string]string),
