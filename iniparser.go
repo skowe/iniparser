@@ -122,7 +122,7 @@ func extractBlocks(c *INI) {
 			blk.AppendContent(line)
 			cnt++
 		} else if cnt != 0 {
-			key, value, found := strings.Cut(string(line), KeyValSep)
+			key, value, found := strings.Cut(strings.TrimSpace(string(line)), KeyValSep)
 			if found && validKey(key) {
 				blk.AppendContent(line)
 				kv := []string{key, value}
