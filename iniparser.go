@@ -19,21 +19,18 @@ const (
 
 var isWindows = false
 
-// INI type contains a slice of blocks
-// Blocks are held inside the Blocks []Block variable
-// INI type also contains the Raw data
-// RawTrimmed contains all the data with comments trimmed
-// inside the Raw []byte variable
+// INI type contains a map of blocks, raw data as a slice of bytes and 
+// data with comments trimmed as a slice of bztes
 type INI struct {
 	Blocks     map[string]Block
 	Raw        []byte
 	RawTrimmed []byte
 }
 
-// The Block type contains data all the data that describes the block
-// With comments omitted
-// Content variable represents the raw data
-// while the Data variable represents the key value pairs
+// Block type contains all the data that describes a block
+// with comments omitted.
+// Content variable represents the raw data inside a ini file block including the header.
+// Data variable stores string key-value pairs for easy access.
 type Block struct {
 	Content []byte
 	Data    map[string]string
