@@ -20,7 +20,7 @@ const (
 var isWindows = false
 
 // INI type contains a map of blocks, raw data as a slice of bytes and 
-// data with comments trimmed as a slice of bztes
+// data with comments trimmed as a slice of bytes
 type INI struct {
 	Blocks     map[string]Block
 	Raw        []byte
