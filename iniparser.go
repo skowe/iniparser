@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-//Constants for file parsing
+// Constants for file parsing
 const (
 	WindowsLineEnd = "\r\n"
 	LineEnd        = '\n'
@@ -19,7 +19,7 @@ const (
 
 var isWindows = false
 
-// INI type contains a map of blocks, raw data as a slice of bytes and 
+// INI type contains a map of blocks, raw data as a slice of bytes and
 // data with comments trimmed as a slice of bytes
 type INI struct {
 	Blocks     map[string]Block
@@ -100,7 +100,7 @@ func (c *INI) Parse() {
 
 func extractBlocks(c *INI) {
 	lines := c.Lines(true)
-	regexpCh := regexp.MustCompile(`\[([\w\$-]+)\]`)
+	regexpCh := regexp.MustCompile(`^\[([\w\$-]+)\]`)
 	var (
 		blk  Block
 		name string
@@ -167,8 +167,7 @@ func trimComments(c *INI) {
 	c.RawTrimmed = res
 }
 
-
-func (i *INI) GetBlockData(name string) map[string]string{
+func (i *INI) GetBlockData(name string) map[string]string {
 	val, ok := i.Blocks[name]
 
 	if !ok {
